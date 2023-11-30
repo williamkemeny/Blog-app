@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-williamblogapp-dev-124538-authRole",
+      "UnauthRoleArn": "arn:aws:iam::541800464227:role/amplify-williamblogapp-dev-124538-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::541800464227:role/amplify-williamblogapp-dev-124538-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-williamblogapp-dev-124538-deployment",
+      "UnauthRoleName": "amplify-williamblogapp-dev-124538-unauthRole",
+      "StackName": "amplify-williamblogapp-dev-124538",
+      "StackId": "arn:aws:cloudformation:us-east-2:541800464227:stack/amplify-williamblogapp-dev-124538/474cfe90-8fa8-11ee-b317-06612066e8d5",
+      "AmplifyAppId": "d1pct096wyai61"
+    },
+    "categories": {
+      "auth": {
+        "williamblogapp8ed11d9e": {}
+      },
+      "api": {
+        "williamblogapp": {}
+      }
+    }
+  }
+}
