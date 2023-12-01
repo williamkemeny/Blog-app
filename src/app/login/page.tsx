@@ -8,7 +8,7 @@ Amplify.configure(config);
 import { Hub } from 'aws-amplify/utils';
 
 
-export function Login({ signOut, user }: WithAuthenticatorProps) {
+export default function Login({ signOut, user }: WithAuthenticatorProps) {
 
 const listener = (data) => {
   console.log(data);
