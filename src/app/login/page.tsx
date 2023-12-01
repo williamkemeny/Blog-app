@@ -8,12 +8,12 @@ Amplify.configure(config);
 import { Hub } from 'aws-amplify/utils';
 
 
-function Login({ signOut, user }: WithAuthenticatorProps) {
+const Login: NextPage<WithAuthenticatorProps> = ({ signOut, user }) => {
 
-const listener = (data) => {
-  console.log(data);
-};
-Hub.listen('auth', listener);
+  const listener = (data) => {
+    console.log(data);
+  };
+  Hub.listen('auth', listener);
   
   return (
     <div style={{ paddingTop: "60px" }}>
