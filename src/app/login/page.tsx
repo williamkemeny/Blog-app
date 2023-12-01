@@ -4,16 +4,10 @@ import type { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import config from "../../amplifyconfiguration.json";
+import { NextPage } from 'next';
 Amplify.configure(config);
-import { Hub } from 'aws-amplify/utils';
-
 
 const Login: NextPage<WithAuthenticatorProps> = ({ signOut, user }) => {
-
-  const listener = (data) => {
-    console.log(data);
-  };
-  Hub.listen('auth', listener);
   
   return (
     <div style={{ paddingTop: "60px" }}>
