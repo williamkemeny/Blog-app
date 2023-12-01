@@ -5,8 +5,16 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import config from "../../amplifyconfiguration.json";
 Amplify.configure(config);
+import { Hub } from 'aws-amplify/utils';
+
 
 export function Login({ signOut, user }: WithAuthenticatorProps) {
+
+const listener = (data) => {
+  console.log(data);
+};
+Hub.listen('auth', listener);
+  
   return (
     <div style={{ paddingTop: "60px" }}>
       <h1>Hello {user?.username}</h1>
