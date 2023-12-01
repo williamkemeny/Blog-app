@@ -11,7 +11,7 @@ import { Hub } from 'aws-amplify/utils';
 
 const Login: NextPage<WithAuthenticatorProps> = ({ signOut, user }) => {
 
-  const listener = (data) => {
+  const listener = (data: string) => {
     console.log(data);
   };
   Hub.listen('auth', listener);
