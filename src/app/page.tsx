@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useUser } from "./context/AuthContext";
+import Post from "./components/post/post";
 
 export default function Home() {
   const [owner, setOwner] = useState("");
@@ -23,6 +24,7 @@ export default function Home() {
           <h1>Home</h1>
           <h2>{owner}</h2>
           <h3>{email}</h3>
+          <Post />
         </div>
       </div>
     </section>
