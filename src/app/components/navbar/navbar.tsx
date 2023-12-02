@@ -18,7 +18,14 @@ const Navbar: React.FC = () => {
         <span className="text-2xl font-semibold whitespace-nowrap dark:text-white">
           William&apos;s Blog
         </span>
+
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <div
+            style={{ paddingRight: "10px" }}
+            className="text-2xl whitespace-nowrap dark:text-white"
+          >
+            {userName ? "Hello " + userName : null}
+          </div>
           <Link
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             href={"/login"}
