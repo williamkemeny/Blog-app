@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "./context/AuthContext";
 import Post from "./components/post/post";
+import CreatePost from "./components/post/create-post";
 
 export default function Home() {
   const [owner, setOwner] = useState("");
@@ -21,9 +22,7 @@ export default function Home() {
     >
       <div className="container px-6 py-12 mx-auto">
         <div className="text-center">
-          <h1>Home</h1>
-          <h2>{owner}</h2>
-          <h3>{email}</h3>
+          {email === owner ? <CreatePost /> : <></>}
           <Post />
         </div>
       </div>
