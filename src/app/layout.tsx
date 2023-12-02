@@ -8,6 +8,7 @@ import config from "../amplifyconfiguration.json";
 import aws_exports from "../aws-exports";
 Amplify.configure(aws_exports);
 Amplify.configure(config);
+import { AuthContext } from "./context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,11 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning={true} lang="en">
       <body suppressHydrationWarning={true} className={inter.className}>
-        <Navbar />
-        {children}
+        <AuthContext>
+          {" "}
+          <Navbar />
+          {children}
+        </AuthContext>
       </body>
     </html>
   );

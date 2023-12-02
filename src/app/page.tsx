@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useUser } from "./context/AuthContext";
 
 export default function Home() {
   const [owner, setOwner] = useState("");
+  const { userName, email } = useUser();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -20,6 +22,7 @@ export default function Home() {
         <div className="text-center">
           <h1>Home</h1>
           <h2>{owner}</h2>
+          <h3>{email}</h3>
         </div>
       </div>
     </section>
