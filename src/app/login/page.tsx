@@ -4,9 +4,11 @@ import type { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import config from "../../amplifyconfiguration.json";
+import { NextPage } from 'next';
 Amplify.configure(config);
 
-export function Login({ signOut, user }: WithAuthenticatorProps) {
+const Login: NextPage<WithAuthenticatorProps> = ({ signOut, user }) => {
+  
   return (
     <div
       className="bg-white dark:bg-gray-900 min-h-screen"
