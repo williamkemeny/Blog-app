@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Blog App:
+A blog app created for my own personal use
+
 ## Getting Started
 
 First, run the development server:
@@ -20,17 +23,41 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## :dart: Features
 
-To learn more about Next.js, take a look at the following resources:
+### Feature: Posting
+- I can post new and exciting things about my day to day
+  
+### Feature: Authentication
+- Users can sign up for an account to access the app's features.
+- Users can log in to their account to access personal data and use the app.
+- Users can log out of the app to ensure their information is secure.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Feature: Comment on my posts
+- Users can comment on my posts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## :traffic_light: Dependencies
+  ```
+  "@aws-amplify/auth": "^6.0.5",
+  "@aws-amplify/core": "^6.0.5",
+  "@aws-amplify/ui-react": "^6.0.3",
+  "amazon-cognito-identity-js": "^6.3.7",
+  "aws-amplify": "^6.0.5",
+  "next": "14.0.3",
+  "react": "^18",
+  "react-dom": "^18"
+  "@types/node": "^20",
+  "@types/react": "^18",
+  "@types/react-dom": "^18",
+  "autoprefixer": "^10.0.1",
+  "eslint": "^8",
+  "eslint-config-next": "14.0.3",
+  "postcss": "^8",
+  "tailwindcss": "^3.3.0",
+  "typescript": "^5"
 
-## Deploy on Vercel
+  ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Thank you for your interest!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+------------------------------------------------------------------------------------------------
