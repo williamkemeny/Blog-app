@@ -80,7 +80,7 @@ const Post: React.FC<MyComponentProps> = ({
 
   return (
     <div
-      style={{ padding: "12px" }}
+      style={{ paddingTop: "12px" }}
       className="px-10 flex items-center justify-center"
     >
       <div className="bg-white border-2 max-w-xl rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
@@ -93,7 +93,7 @@ const Post: React.FC<MyComponentProps> = ({
             style={{ padding: "10px" }}
             className="flex justify-between items-center"
           >
-            <div style={{ paddingRight: "11rem" }} className="flex flex-col ">
+            <div style={{ paddingRight: "9rem" }} className="flex flex-col ">
               <span
                 className="text-sm font-semibold mt-4 flex "
                 style={{ paddingRight: "25px" }}
