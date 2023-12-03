@@ -1,11 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { createPost } from "../../../graphql/mutations";
-import { generateClient } from "aws-amplify/api";
 import { useUser } from "../../context/AuthContext";
-
-const client = generateClient();
 
 interface CreatePostProps {
   handleCreatePost: (title: string, content: string, user: string) => void;
@@ -16,30 +12,6 @@ const CreatePost: React.FC<CreatePostProps> = ({ handleCreatePost }) => {
   const [content, setContent] = useState("");
   const { userName } = useUser();
   const [user, setUser] = useState(userName || "");
-
-  // const handleCreatePost = async (
-  //   title: string,
-  //   content: string,
-  //   user: string
-  // ) => {
-  //   try {
-  //     const newPost = await client.graphql({
-  //       query: createPost,
-  //       variables: {
-  //         input: {
-  //           title: title,
-  //           content: content,
-  //           username: user,
-  //         },
-  //       },
-  //       authMode: "userPool",
-  //     });
-  //     console.log("New Post Result:", newPost);
-  //   } catch (error) {
-  //     console.error("Error creating post:", error);
-  //     // Handle error as needed
-  //   }
-  // };
 
   return (
     <div className="px-10 flex items-center justify-center">
