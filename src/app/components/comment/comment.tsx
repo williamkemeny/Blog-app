@@ -2,14 +2,31 @@
 
 import React from "react";
 
-const Comment: React.FC = () => {
+interface MyComponentProps {
+  createdAt: string;
+  owner: string;
+  content: string;
+}
+
+const Comment: React.FC<MyComponentProps> = ({ content, createdAt, owner }) => {
+  const date = new Date(createdAt);
+  const formattedDate = date.toLocaleString();
   return (
-    <div className="border-t border-gray-300 pt-4">
+    <div
+      style={{ marginTop: "18px" }}
+      className="border-t border-gray-300 pt-4"
+    >
       <article className="mt-4 ml-20 ">
-        <p className="text-md text-gray-600 text-left">Cool!</p>
+        <p className="text-md text-gray-600 text-left">{content}</p>
         <div className="flex justify-between items-center">
-          <div className="text-sm font-semibold mt-4 flex items-center space-x-4 py-6">
-            John Lucas • <span className="font-normal">5 minutes ago</span>
+          <div style={{ paddingRight: "11rem" }} className="flex flex-col ">
+            <span
+              className="text-sm font-semibold mt-4 flex "
+              style={{ paddingRight: "25px" }}
+            >
+              {owner}
+            </span>
+            <span className="text-sm font-normal">{formattedDate}</span>
           </div>
         </div>
       </article>

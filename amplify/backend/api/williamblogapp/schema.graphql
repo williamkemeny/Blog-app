@@ -3,13 +3,11 @@ type Post @model @auth(rules: [{allow: owner, operations: [create, update, delet
   title: String!
   comments: [Comment] @hasMany
   content: String!
-  username: String!
 }
 
 type Comment @model @auth(rules: [{allow: owner, operations: [create, update, delete, read]}, {allow: private, operations: [read]}, {allow: public, operations: [read]}]) {
   id: ID!
   post: Post @belongsTo
   content: String!
-  username: String!
 }
  

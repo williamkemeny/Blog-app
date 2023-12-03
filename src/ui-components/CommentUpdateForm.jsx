@@ -26,17 +26,14 @@ export default function CommentUpdateForm(props) {
   } = props;
   const initialValues = {
     content: "",
-    username: "",
   };
   const [content, setContent] = React.useState(initialValues.content);
-  const [username, setUsername] = React.useState(initialValues.username);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = commentRecord
       ? { ...initialValues, ...commentRecord }
       : initialValues;
     setContent(cleanValues.content);
-    setUsername(cleanValues.username);
     setErrors({});
   };
   const [commentRecord, setCommentRecord] = React.useState(commentModelProp);
@@ -57,7 +54,6 @@ export default function CommentUpdateForm(props) {
   React.useEffect(resetStateValues, [commentRecord]);
   const validations = {
     content: [{ type: "Required" }],
-    username: [{ type: "Required" }],
   };
   const runValidationTasks = async (
     fieldName,
@@ -86,7 +82,6 @@ export default function CommentUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           content,
-          username,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -148,7 +143,6 @@ export default function CommentUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               content: value,
-              username,
             };
             const result = onChange(modelFields);
             value = result?.content ?? value;
@@ -162,31 +156,6 @@ export default function CommentUpdateForm(props) {
         errorMessage={errors.content?.errorMessage}
         hasError={errors.content?.hasError}
         {...getOverrideProps(overrides, "content")}
-      ></TextField>
-      <TextField
-        label="Username"
-        isRequired={true}
-        isReadOnly={false}
-        value={username}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              content,
-              username: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.username ?? value;
-          }
-          if (errors.username?.hasError) {
-            runValidationTasks("username", value);
-          }
-          setUsername(value);
-        }}
-        onBlur={() => runValidationTasks("username", username)}
-        errorMessage={errors.username?.errorMessage}
-        hasError={errors.username?.hasError}
-        {...getOverrideProps(overrides, "username")}
       ></TextField>
       <Flex
         justifyContent="space-between"

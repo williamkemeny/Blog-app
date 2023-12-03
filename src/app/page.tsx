@@ -29,11 +29,7 @@ export default function Home() {
     }
   };
 
-  const handleCreatePost = async (
-    title: string,
-    content: string,
-    user: string
-  ) => {
+  const handleCreatePost = async (title: string, content: string) => {
     try {
       const newPost = await client.graphql({
         query: createPost,
@@ -41,7 +37,6 @@ export default function Home() {
           input: {
             title: title,
             content: content,
-            username: user,
           },
         },
         authMode: "userPool",
@@ -73,10 +68,11 @@ export default function Home() {
           {posts.map((post) => (
             <Post
               key={post.id}
+              id={post.id}
               content={post.content}
               title={post.title}
               createdAt={post.updatedAt}
-              username={post.username}
+              owner={post.owner}
             />
           ))}
         </div>
