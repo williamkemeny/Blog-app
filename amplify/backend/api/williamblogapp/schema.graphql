@@ -4,8 +4,6 @@ type Post @model @auth(rules: [{allow: owner, operations: [create, update, delet
   comments: [Comment] @hasMany
   content: String!
   username: String!
-  date: AWSDate
-  time: AWSTime
 }
 
 type Comment @model @auth(rules: [{allow: owner, operations: [create, update, delete, read]}, {allow: private, operations: [read]}, {allow: public, operations: [read]}]) {
@@ -13,7 +11,5 @@ type Comment @model @auth(rules: [{allow: owner, operations: [create, update, de
   post: Post @belongsTo
   content: String!
   username: String!
-  date: AWSDate
-  time: AWSTime
 }
  

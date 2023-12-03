@@ -24,22 +24,16 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type CommentCreateFormInputValues = {
     content?: string;
     username?: string;
-    date?: string;
-    time?: string;
 };
 export declare type CommentCreateFormValidationValues = {
     content?: ValidationFunction<string>;
     username?: ValidationFunction<string>;
-    date?: ValidationFunction<string>;
-    time?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CommentCreateFormOverridesProps = {
     CommentCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     content?: PrimitiveOverrideProps<TextFieldProps>;
     username?: PrimitiveOverrideProps<TextFieldProps>;
-    date?: PrimitiveOverrideProps<TextFieldProps>;
-    time?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CommentCreateFormProps = React.PropsWithChildren<{
     overrides?: CommentCreateFormOverridesProps | undefined | null;
