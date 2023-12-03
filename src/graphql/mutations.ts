@@ -20,7 +20,6 @@ export const createPost = /* GraphQL */ `mutation CreatePost(
       __typename
     }
     content
-    username
     createdAt
     updatedAt
     owner
@@ -43,7 +42,6 @@ export const updatePost = /* GraphQL */ `mutation UpdatePost(
       __typename
     }
     content
-    username
     createdAt
     updatedAt
     owner
@@ -66,7 +64,6 @@ export const deletePost = /* GraphQL */ `mutation DeletePost(
       __typename
     }
     content
-    username
     createdAt
     updatedAt
     owner
@@ -87,14 +84,12 @@ export const createComment = /* GraphQL */ `mutation CreateComment(
       id
       title
       content
-      username
       createdAt
       updatedAt
       owner
       __typename
     }
     content
-    username
     createdAt
     updatedAt
     postCommentsId
@@ -116,14 +111,12 @@ export const updateComment = /* GraphQL */ `mutation UpdateComment(
       id
       title
       content
-      username
       createdAt
       updatedAt
       owner
       __typename
     }
     content
-    username
     createdAt
     updatedAt
     postCommentsId
@@ -145,14 +138,12 @@ export const deleteComment = /* GraphQL */ `mutation DeleteComment(
       id
       title
       content
-      username
       createdAt
       updatedAt
       owner
       __typename
     }
     content
-    username
     createdAt
     updatedAt
     postCommentsId

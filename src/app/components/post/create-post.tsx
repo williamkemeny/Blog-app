@@ -1,17 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { useUser } from "../../context/AuthContext";
 
 interface CreatePostProps {
-  handleCreatePost: (title: string, content: string, user: string) => void;
+  handleCreatePost: (title: string, content: string) => void;
 }
 
 const CreatePost: React.FC<CreatePostProps> = ({ handleCreatePost }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { userName } = useUser();
-  const [user, setUser] = useState(userName || "");
 
   return (
     <div className="px-10 flex items-center justify-center">
@@ -53,7 +50,11 @@ const CreatePost: React.FC<CreatePostProps> = ({ handleCreatePost }) => {
           </div>
           <button
             className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            onClick={() => handleCreatePost(title, content, user)}
+            onClick={() => {
+              handleCreatePost(title, content);
+              setContent("");
+              setTitle("");
+            }}
           >
             Submit
           </button>

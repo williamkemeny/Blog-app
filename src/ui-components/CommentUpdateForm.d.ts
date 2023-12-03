@@ -24,17 +24,14 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type CommentUpdateFormInputValues = {
     content?: string;
-    username?: string;
 };
 export declare type CommentUpdateFormValidationValues = {
     content?: ValidationFunction<string>;
-    username?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type CommentUpdateFormOverridesProps = {
     CommentUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     content?: PrimitiveOverrideProps<TextFieldProps>;
-    username?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CommentUpdateFormProps = React.PropsWithChildren<{
     overrides?: CommentUpdateFormOverridesProps | undefined | null;

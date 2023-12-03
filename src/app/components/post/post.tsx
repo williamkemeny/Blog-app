@@ -1,32 +1,86 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Comment from "../comment/comment";
 import CreateComment from "../comment/create-comment";
 import { useUser } from "../../context/AuthContext";
+import { listComments } from "@/graphql/queries";
+import { createComment } from "@/graphql/mutations";
+import { generateClient } from "aws-amplify/api";
+
+const client = generateClient();
 
 interface MyComponentProps {
   title: string;
   createdAt: string;
-  username: string;
+  owner: string;
   content: string;
+  id: string;
 }
 
 const Post: React.FC<MyComponentProps> = ({
   title,
   content,
   createdAt,
-  username,
+  owner,
+  id,
 }) => {
   const { userName } = useUser();
   const [viewReplies, setViewReplies] = useState(false);
   const [commentInput, setCommentInput] = useState(false);
+  const [comments, setComments] = useState<any[]>([]);
   const date = new Date(createdAt);
   const formattedDate = date.toLocaleString();
 
+  const handleLoadComments = async () => {
+    try {
+      const allComments = await client.graphql({
+        query: listComments,
+        variables: {
+          filter: {
+            postCommentsId: {
+              eq: id,
+            },
+          },
+        },
+      });
+      const sortedComments = allComments.data.listComments.items.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      setComments(sortedComments || []);
+    } catch (error) {
+      console.error("Error creating post:", error);
+      setComments([]);
+    }
+  };
+
+  const handleCreateComment = async (content: string) => {
+    try {
+      const newComment = await client.graphql({
+        query: createComment,
+        variables: {
+          input: {
+            content: content,
+            postCommentsId: id,
+          },
+        },
+        authMode: "userPool",
+      });
+      console.log("New Post Result:", newComment);
+    } catch (error) {
+      console.error("Error creating post:", error);
+      // Handle error as needed
+    }
+  };
+
+  useEffect(() => {
+    handleLoadComments();
+  }, [handleCreateComment]);
+
   return (
     <div
-      style={{ padding: "20px" }}
+      style={{ padding: "12px" }}
       className="px-10 flex items-center justify-center"
     >
       <div className="bg-white border-2 max-w-xl rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
@@ -39,14 +93,14 @@ const Post: React.FC<MyComponentProps> = ({
             style={{ padding: "10px" }}
             className="flex justify-between items-center"
           >
-            <div
-              className="text-sm font-semibold mt-4 flex items-center space-x-4 py-6"
-              style={{ paddingRight: "25px" }}
-            >
-              {username} •{" "}
-              <span className="font-normal" style={{ paddingRight: "50px" }}>
-                {formattedDate}
+            <div style={{ paddingRight: "11rem" }} className="flex flex-col ">
+              <span
+                className="text-sm font-semibold mt-4 flex "
+                style={{ paddingRight: "25px" }}
+              >
+                {owner}
               </span>
+              <span className="text-sm font-normal">{formattedDate}</span>
             </div>
             {userName ? (
               <button
@@ -57,7 +111,9 @@ const Post: React.FC<MyComponentProps> = ({
               </button>
             ) : null}
           </div>
-          {commentInput ? <CreateComment /> : null}
+          {commentInput ? (
+            <CreateComment handleCreateComment={handleCreateComment} />
+          ) : null}
         </article>
         <button
           onClick={() => setViewReplies(!viewReplies)}
@@ -65,7 +121,16 @@ const Post: React.FC<MyComponentProps> = ({
         >
           View Replies &#8627;
         </button>
-        {viewReplies ? <Comment /> : null}
+        {viewReplies
+          ? comments.map((comment) => (
+              <Comment
+                key={comment.id}
+                content={comment.content}
+                createdAt={comment.updatedAt}
+                owner={comment.owner}
+              />
+            ))
+          : null}
       </div>
     </div>
   );
