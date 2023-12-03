@@ -27,13 +27,9 @@ export default function CommentUpdateForm(props) {
   const initialValues = {
     content: "",
     username: "",
-    date: "",
-    time: "",
   };
   const [content, setContent] = React.useState(initialValues.content);
   const [username, setUsername] = React.useState(initialValues.username);
-  const [date, setDate] = React.useState(initialValues.date);
-  const [time, setTime] = React.useState(initialValues.time);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = commentRecord
@@ -41,8 +37,6 @@ export default function CommentUpdateForm(props) {
       : initialValues;
     setContent(cleanValues.content);
     setUsername(cleanValues.username);
-    setDate(cleanValues.date);
-    setTime(cleanValues.time);
     setErrors({});
   };
   const [commentRecord, setCommentRecord] = React.useState(commentModelProp);
@@ -64,8 +58,6 @@ export default function CommentUpdateForm(props) {
   const validations = {
     content: [{ type: "Required" }],
     username: [{ type: "Required" }],
-    date: [],
-    time: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -95,8 +87,6 @@ export default function CommentUpdateForm(props) {
         let modelFields = {
           content,
           username,
-          date: date ?? null,
-          time: time ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -159,8 +149,6 @@ export default function CommentUpdateForm(props) {
             const modelFields = {
               content: value,
               username,
-              date,
-              time,
             };
             const result = onChange(modelFields);
             value = result?.content ?? value;
@@ -186,8 +174,6 @@ export default function CommentUpdateForm(props) {
             const modelFields = {
               content,
               username: value,
-              date,
-              time,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -201,62 +187,6 @@ export default function CommentUpdateForm(props) {
         errorMessage={errors.username?.errorMessage}
         hasError={errors.username?.hasError}
         {...getOverrideProps(overrides, "username")}
-      ></TextField>
-      <TextField
-        label="Date"
-        isRequired={false}
-        isReadOnly={false}
-        type="date"
-        value={date}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              content,
-              username,
-              date: value,
-              time,
-            };
-            const result = onChange(modelFields);
-            value = result?.date ?? value;
-          }
-          if (errors.date?.hasError) {
-            runValidationTasks("date", value);
-          }
-          setDate(value);
-        }}
-        onBlur={() => runValidationTasks("date", date)}
-        errorMessage={errors.date?.errorMessage}
-        hasError={errors.date?.hasError}
-        {...getOverrideProps(overrides, "date")}
-      ></TextField>
-      <TextField
-        label="Time"
-        isRequired={false}
-        isReadOnly={false}
-        type="time"
-        value={time}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              content,
-              username,
-              date,
-              time: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.time ?? value;
-          }
-          if (errors.time?.hasError) {
-            runValidationTasks("time", value);
-          }
-          setTime(value);
-        }}
-        onBlur={() => runValidationTasks("time", time)}
-        errorMessage={errors.time?.errorMessage}
-        hasError={errors.time?.hasError}
-        {...getOverrideProps(overrides, "time")}
       ></TextField>
       <Flex
         justifyContent="space-between"

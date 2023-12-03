@@ -28,14 +28,10 @@ export default function PostUpdateForm(props) {
     title: "",
     content: "",
     username: "",
-    date: "",
-    time: "",
   };
   const [title, setTitle] = React.useState(initialValues.title);
   const [content, setContent] = React.useState(initialValues.content);
   const [username, setUsername] = React.useState(initialValues.username);
-  const [date, setDate] = React.useState(initialValues.date);
-  const [time, setTime] = React.useState(initialValues.time);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = postRecord
@@ -44,8 +40,6 @@ export default function PostUpdateForm(props) {
     setTitle(cleanValues.title);
     setContent(cleanValues.content);
     setUsername(cleanValues.username);
-    setDate(cleanValues.date);
-    setTime(cleanValues.time);
     setErrors({});
   };
   const [postRecord, setPostRecord] = React.useState(postModelProp);
@@ -68,8 +62,6 @@ export default function PostUpdateForm(props) {
     title: [{ type: "Required" }],
     content: [{ type: "Required" }],
     username: [{ type: "Required" }],
-    date: [],
-    time: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -100,8 +92,6 @@ export default function PostUpdateForm(props) {
           title,
           content,
           username,
-          date: date ?? null,
-          time: time ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -165,8 +155,6 @@ export default function PostUpdateForm(props) {
               title: value,
               content,
               username,
-              date,
-              time,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -193,8 +181,6 @@ export default function PostUpdateForm(props) {
               title,
               content: value,
               username,
-              date,
-              time,
             };
             const result = onChange(modelFields);
             value = result?.content ?? value;
@@ -221,8 +207,6 @@ export default function PostUpdateForm(props) {
               title,
               content,
               username: value,
-              date,
-              time,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -236,64 +220,6 @@ export default function PostUpdateForm(props) {
         errorMessage={errors.username?.errorMessage}
         hasError={errors.username?.hasError}
         {...getOverrideProps(overrides, "username")}
-      ></TextField>
-      <TextField
-        label="Date"
-        isRequired={false}
-        isReadOnly={false}
-        type="date"
-        value={date}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              title,
-              content,
-              username,
-              date: value,
-              time,
-            };
-            const result = onChange(modelFields);
-            value = result?.date ?? value;
-          }
-          if (errors.date?.hasError) {
-            runValidationTasks("date", value);
-          }
-          setDate(value);
-        }}
-        onBlur={() => runValidationTasks("date", date)}
-        errorMessage={errors.date?.errorMessage}
-        hasError={errors.date?.hasError}
-        {...getOverrideProps(overrides, "date")}
-      ></TextField>
-      <TextField
-        label="Time"
-        isRequired={false}
-        isReadOnly={false}
-        type="time"
-        value={time}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              title,
-              content,
-              username,
-              date,
-              time: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.time ?? value;
-          }
-          if (errors.time?.hasError) {
-            runValidationTasks("time", value);
-          }
-          setTime(value);
-        }}
-        onBlur={() => runValidationTasks("time", time)}
-        errorMessage={errors.time?.errorMessage}
-        hasError={errors.time?.hasError}
-        {...getOverrideProps(overrides, "time")}
       ></TextField>
       <Flex
         justifyContent="space-between"

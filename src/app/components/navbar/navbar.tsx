@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavbarItems from "./navbar-items";
 import Link from "next/link";
 import { useUser } from "./../../context/AuthContext";
@@ -8,7 +8,11 @@ import { useUser } from "./../../context/AuthContext";
 const Navbar: React.FC = () => {
   const { userName } = useUser();
   const [isOpen, setIsOpen] = useState(false);
-  const isWindowSmall = window.innerWidth <= 425;
+  const [isWindowSmall, setIsWindowSmall] = useState(false);
+
+  useEffect(() => {
+    setIsWindowSmall(window.innerWidth <= 425);
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

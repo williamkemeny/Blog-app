@@ -19,6 +19,8 @@ export const onCreatePost = /* GraphQL */ `subscription OnCreatePost(
       nextToken
       __typename
     }
+    content
+    username
     createdAt
     updatedAt
     owner
@@ -40,6 +42,8 @@ export const onUpdatePost = /* GraphQL */ `subscription OnUpdatePost(
       nextToken
       __typename
     }
+    content
+    username
     createdAt
     updatedAt
     owner
@@ -61,6 +65,8 @@ export const onDeletePost = /* GraphQL */ `subscription OnDeletePost(
       nextToken
       __typename
     }
+    content
+    username
     createdAt
     updatedAt
     owner
@@ -80,12 +86,15 @@ export const onCreateComment = /* GraphQL */ `subscription OnCreateComment(
     post {
       id
       title
+      content
+      username
       createdAt
       updatedAt
       owner
       __typename
     }
     content
+    username
     createdAt
     updatedAt
     postCommentsId
@@ -106,12 +115,15 @@ export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment(
     post {
       id
       title
+      content
+      username
       createdAt
       updatedAt
       owner
       __typename
     }
     content
+    username
     createdAt
     updatedAt
     postCommentsId
@@ -132,12 +144,15 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment(
     post {
       id
       title
+      content
+      username
       createdAt
       updatedAt
       owner
       __typename
     }
     content
+    username
     createdAt
     updatedAt
     postCommentsId
