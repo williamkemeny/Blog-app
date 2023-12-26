@@ -26,7 +26,9 @@ const Comment: React.FC<MyComponentProps> = ({ content, createdAt, owner }) => {
             >
               {owner}
             </span>
-            <span className="text-sm font-normal">{formattedDate}</span>
+            <span className="text-sm font-normal dark:text-black">
+              {formattedDate}
+            </span>
           </div>
         </div>
       </article>
