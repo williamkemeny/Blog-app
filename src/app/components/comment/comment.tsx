@@ -21,7 +21,7 @@ const Comment: React.FC<MyComponentProps> = ({ content, createdAt, owner }) => {
         <div className="flex justify-between items-center">
           <div style={{ paddingRight: "11rem" }} className="flex flex-col ">
             <span
-              className="text-sm font-semibold mt-4 flex "
+              className="text-sm font-semibold mt-4 flex dark:text-black"
               style={{ paddingRight: "25px" }}
             >
               {owner}
