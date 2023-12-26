@@ -95,12 +95,14 @@ const Post: React.FC<MyComponentProps> = ({
           >
             <div style={{ paddingRight: "9rem" }} className="flex flex-col ">
               <span
-                className="text-sm font-semibold mt-4 flex "
+                className="text-sm font-semibold mt-4 flex dark:text-black"
                 style={{ paddingRight: "25px" }}
               >
                 {owner}
               </span>
-              <span className="text-sm font-normal">{formattedDate}</span>
+              <span className="text-sm font-normal dark:text-black">
+                {formattedDate}
+              </span>
             </div>
             {userName ? (
               <button

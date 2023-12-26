@@ -20,7 +20,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ handleCreatePost }) => {
           >
             <input
               type="InputText"
-              className="block border-2 border-gray-150 px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block border-2 border-gray-150 px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               id="InputText"
               placeholder=""
               onChange={(event) => setTitle(event.target.value)}
@@ -34,7 +34,7 @@ const CreatePost: React.FC<CreatePostProps> = ({ handleCreatePost }) => {
           </div>
           <div className="flex items-center justify-center relative mb-3">
             <textarea
-              className="block border-2 border-gray-150 px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className="block border-2 border-gray-150 px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               id="Textarea"
               cols={44}
               rows={4}
