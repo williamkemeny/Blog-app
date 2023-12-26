@@ -117,12 +117,18 @@ const Post: React.FC<MyComponentProps> = ({
             <CreateComment handleCreateComment={handleCreateComment} />
           ) : null}
         </article>
-        <button
-          onClick={() => setViewReplies(!viewReplies)}
-          className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-        >
-          View Replies &#8627;
-        </button>
+        {comments.length !== 0 ? (
+          <button
+            onClick={() => setViewReplies(!viewReplies)}
+            className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+          >
+            View Replies {comments.length} &#8627;
+          </button>
+        ) : (
+          <p className="block py-2 px-3 bg-blue-700 rounded md:bg-transparent ">
+            No Replies
+          </p>
+        )}
         {viewReplies
           ? comments.map((comment) => (
               <Comment
